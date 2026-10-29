@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickTodo</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+  <header>
+    <h1>QuickTodo</h1>
+  </header>
+
+  <section id="task-input">
+    <input type="text" id="new-task" placeholder="What needs to be done?" autocomplete="off">
+    <input type="date" id="new-due-date">
+    <button id="add-task">Add</button>
+  </section>
+
+  <nav id="filters">
+    <button data-filter="all" class="filter active">All</button>
+    <button data-filter="pending" class="filter">Pending</button>
+    <button data-filter="completed" class="filter">Completed</button>
+  </nav>
+
+  <ul id="task-list"></ul>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .catch(err => console.error('ServiceWorker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
